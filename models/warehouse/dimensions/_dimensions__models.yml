@@ -1,0 +1,23 @@
+# Note: "tests" are now called "data_tests" & have been updated accordingly
+# You may delete these comments
+version: 2
+
+models:
+  - name: dim_calendar_dates
+    columns:
+    - name: calendar_date_sk
+      data_tests: 
+        - unique
+        - not_null
+  - name: dim_games
+    columns:
+      - name: game_sk
+        data_tests: 
+          - unique
+          - not_null
+  - name: dim_teams
+    columns:
+      - name: team_sk
+        data_tests: 
+          - unique
+          - not_null
