@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: franchises
+    database: analytics
+    schema: raw_google_sheets
+    tables:
+      - name: actives
+        identifier: franchise_actives
+      - name: general_managers
+        identifier: franchise_general_managers
+      - name: head_coaches
+        identifier: franchise_coaches

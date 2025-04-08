@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: nba
+    database: analytics
+    schema: raw_nba
+    tables:
+      - name: games
+        identifier: games_response
+      - name: teams
+        identifier: teams_response
