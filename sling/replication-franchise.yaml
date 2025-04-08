@@ -1,0 +1,14 @@
+source: GOOGLE-STORAGE
+target: PG-ANALYTICS
+
+defaults:
+  object: 'raw_google_sheets.franchise_{stream_file_name}'
+  mode: full-refresh
+  source_options:
+  format: csv
+
+streams:
+  "gs://franchise-data/actives.csv":
+  "gs://franchise-data/coaches.csv":
+  "gs://franchise-data/general_managers.csv":
+  "gs://franchise-data/inactives.csv":
