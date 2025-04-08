@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: stg_gsheets__franchise_actives
+  - name: stg_gsheets__franchise_general_managers
+  - name: stg_gsheets__franchise_head_coaches

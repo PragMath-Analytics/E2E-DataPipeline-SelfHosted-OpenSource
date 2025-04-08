@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: stg_nba__games
+  - name: stg_nba__teams
