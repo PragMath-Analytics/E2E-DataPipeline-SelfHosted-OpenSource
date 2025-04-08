@@ -1,0 +1,11 @@
+# Note: "tests" are now called "data_tests" & have been updated accordingly
+# You may delete these comments
+version: 2
+
+models:
+  - name: nba_games_detail
+    columns:
+      - name: game_id
+        data_tests:
+          - unique
+          - not_null

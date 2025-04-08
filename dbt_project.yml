@@ -38,3 +38,6 @@ models:
     warehouse:
       +materialized: table
       +schema: warehouse
+    marts:
+      +materialized: table
+      +schema: marts
