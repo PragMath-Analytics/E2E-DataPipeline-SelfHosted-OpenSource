@@ -4,6 +4,7 @@ version: 2
 
 models:
   - name: nba_games_detail
+    description: '{{ doc("nba_games_detail_description") }}'
     columns:
       - name: game_id
         data_tests:
