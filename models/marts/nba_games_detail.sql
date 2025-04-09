@@ -76,4 +76,4 @@ final as (
 
 )
 
-select * from final order by game_date desc -- For a cleaner view
+select * from final order by game_date desc 
