@@ -1,0 +1,30 @@
+ssp_analytics:
+  outputs:
+    dev:
+      dbname: analytics
+      host: "{{ env_var('DATABASE_HOST') }}"
+      pass: "{{ env_var('DBT_PASSWORD') }}"
+      port: "{{ env_var('DATABASE_PORT') | int }}"
+      schema: public
+      threads: 1
+      type: postgres
+      user: "{{ env_var('DBT_USER') }}"
+    prod:
+      dbname: analytics
+      host: "{{ env_var('DATABASE_HOST') }}"
+      pass: "{{ env_var('DBT_PASSWORD') }}"
+      port: "{{ env_var('DATABASE_PORT') | int }}"
+      schema: public
+      threads: 1
+      type: postgres
+      user: "{{ env_var('DBT_USER') }}"
+    ci:
+      dbname: analytics
+      host: "{{ env_var('DATABASE_HOST') }}"
+      pass: "{{ env_var('DBT_PASSWORD') }}"
+      port: "{{ env_var('DATABASE_PORT') | int }}"
+      schema: ci 
+      threads: 1
+      type: postgres
+      user: "{{ env_var('DBT_USER') }}"
+  target: dev
