@@ -1,0 +1,45 @@
+name: CI Data Ingestion
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  sling-data-load:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}  ${{ secrets.MY_SECRET_PASSWORD }}
+      DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+      SLING_USER: ${{ secrets.SLING_USER }}
+      SLING_PASSWORD: ${{ secrets.SLING_PASSWORD }}
+      BDB_USER: ${{ secrets.BDB_USER }}
+      BDB_PASSWORD: ${{ secrets.BDB_PASSWORD }}
+      B_DATABASE_HOST: ${{ secrets.B_DATABASE_HOST }}
+      B_DATABASE_PORT: ${{ secrets.B_DATABASE_PORT }}
+      # Optional: SERVICE_KEY_JSON if needed for Google Storage
+      # SERVICE_KEY_JSON: ${{ secrets.SERVICE_KEY_JSON }}
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Sling
+        run: |
+          pip install sling
+          sling --version
+      - name: Generate Sling Environment File
+        run: envsubst < _project_docs/sling_auto/env.template.yml > _project_docs/sling_auto/env.yaml
+
+      - name: Run Sling Data Loader - NBA Replication
+        working-directory: sling
+        run: |
+          export SLING_HOME_DIR="${GITHUB_WORKSPACE}/_project_docs/sling_auto"
+          sling run -r replication-nba.yaml
+
+      #- name: Run Sling Data Loader - Franchise Replication
+        #working-directory: sling
+        #run: sling run -r replication-franchise.yaml --env @./_project_docs/sling_auto/env.yml
