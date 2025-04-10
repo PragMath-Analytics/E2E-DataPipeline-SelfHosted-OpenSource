@@ -18,7 +18,7 @@ jobs:
       B_DATABASE_HOST: ${{ secrets.B_DATABASE_HOST }}
       B_DATABASE_PORT: ${{ secrets.B_DATABASE_PORT }}
       # Optional: SERVICE_KEY_JSON if needed for Google Storage
-      SERVICE_KEY_JSON: ${{ secrets.SERVICE_KEY_JSON }}
+      # SERVICE_KEY_JSON: ${{ secrets.SERVICE_KEY_JSON }}
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
