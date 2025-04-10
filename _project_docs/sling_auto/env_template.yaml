@@ -1,0 +1,26 @@
+# _project_docs/sling_auto/env.template.yml
+connections:
+  PG-ANALYTICS:
+    type: postgres
+    host: "$DATABASE_HOST"
+    user: "$SLING_USER"
+    password: "$SLING_PASSWORD"
+    port: "$DATABASE_PORT"
+    database: analytics
+
+  PG-BASKETBALL-DB:
+    type: postgres
+    host: "$B_DATABASE_HOST"
+    user: "$BDB_USER"
+    password: "$BDB_PASSWORD"
+    port: "$B_DATABASE_PORT"
+    database: basketball_db
+    schema: nba_data
+    sslmode: require
+
+  GOOGLE-STORAGE:
+    type: gs
+    bucket: franchise-data
+    key_file: "sling/service_key.json"
+
+variables: {}
