@@ -1,0 +1,47 @@
+# .github/workflows/sling_data_loader.yml
+name: Sling Data Loader Only
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  sling-data-load:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+      DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+      SLING_USER: ${{ secrets.SLING_USER }}
+      SLING_PASSWORD: ${{ secrets.SLING_PASSWORD }}
+      BDB_USER: ${{ secrets.BDB_USER }}
+      BDB_PASSWORD: ${{ secrets.BDB_PASSWORD }}
+      B_DATABASE_HOST: ${{ secrets.B_DATABASE_HOST }}
+      B_DATABASE_PORT: ${{ secrets.B_DATABASE_PORT }}
+      # Optional: SERVICE_KEY_JSON if needed for Google Storage
+      # SERVICE_KEY_JSON: ${{ secrets.SERVICE_KEY_JSON }}
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Set up Google Service Key
+        if: ${{ secrets.SERVICE_KEY_JSON != '' }}
+        run: |
+           echo "${{ secrets.SERVICE_KEY_JSON }}" | base64 --decode > service_key.json
+        env:
+           SERVICE_KEY_JSON: ${{ secrets.SERVICE_KEY_JSON_BASE64 }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Sling CLI
+        run: |
+          pip install sling-cli
+          sling --version
+
+      - name: Run Sling Data Loader - Franchise Replication
+        run: sling replicate replication-franchise.yaml --env _project_docs/sling_auto/env.yml
+
+      - name: Run Sling Data Loader - NBA Replication
+        run: sling replicate replication-nba.yaml --env _project_docs/sling_auto/env.yml
