@@ -24,9 +24,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Google Service Key
-        if: ${{ secrets.SERVICE_KEY_JSON != '' }}
-        run: |
-           echo "${{ secrets.SERVICE_KEY_JSON }}" | base64 --decode > service_key.json
+        run: echo "${{ secrets.SERVICE_KEY_JSON }}" > service_key.json
         env:
            SERVICE_KEY_JSON: ${{ secrets.SERVICE_KEY_JSON_BASE64 }}
 
