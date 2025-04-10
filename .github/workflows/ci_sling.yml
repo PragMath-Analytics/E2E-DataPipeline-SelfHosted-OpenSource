@@ -24,9 +24,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Google Service Key
-        if: ${{ secrets.SERVICE_KEY_JSON != '' }}
-        run: |
-           echo "${{ secrets.SERVICE_KEY_JSON }}" | base64 --decode > service_key.json
+        run: echo "${{ secrets.SERVICE_KEY_JSON }}" > service_key.json
         env:
            SERVICE_KEY_JSON: ${{ secrets.SERVICE_KEY_JSON_BASE64 }}
 
@@ -37,11 +35,11 @@ jobs:
 
       - name: Install Sling CLI
         run: |
-          pip install sling-cli
+          pip install sling
           sling --version
 
       - name: Run Sling Data Loader - Franchise Replication
-        run: sling replicate replication-franchise.yaml --env _project_docs/sling_auto/env.yml
+        run: sling run -r replication-franchise.yaml --env _project_docs/sling_auto/env.yml
 
       - name: Run Sling Data Loader - NBA Replication
-        run: sling replicate replication-nba.yaml --env _project_docs/sling_auto/env.yml
+        run: sling run -r replication-nba.yaml --env _project_docs/sling_auto/env.yml
