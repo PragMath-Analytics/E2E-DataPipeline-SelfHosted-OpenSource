@@ -62,12 +62,10 @@ jobs:
           export SLING_HOME_DIR="${GITHUB_WORKSPACE}/_project_docs/sling_auto"
           sling run -r replication-nba.yaml
 
-      - name: Run Sling Data Loader - Franchise Replication
-        working-directory: sling
-        run: |
-          export SLING_HOME_DIR="${GITHUB_WORKSPACE}/_project_docs/sling_auto"
-          Write the secret content into the file
-          echo "${{ secrets.SERVICE_KEY_JSON }}" > ${GITHUB_WORKSPACE}/sling/service_key.json
+      #- name: Run Sling Data Loader - Franchise Replication
+        #working-directory: sling
+        #run: |
+          #export SLING_HOME_DIR="${GITHUB_WORKSPACE}/_project_docs/sling_auto" 
           #sling run -r replication-franchise.yaml
 
       - name: Install dbt
