@@ -49,11 +49,11 @@ jobs:
           sed -i "s|<B_DATABASE_HOST>|${B_DATABASE_HOST}|g" ${GITHUB_WORKSPACE}/_project_docs/sling_auto/env.yaml
           sed -i "s|<B_DATABASE_PORT>|${B_DATABASE_PORT}|g" ${GITHUB_WORKSPACE}/_project_docs/sling_auto/env.yaml
           
-      - name: Run Sling Data Loader - Franchise Replication
-        working-directory: sling
+      - name: Create service key file
         run: |
-          export SLING_HOME_DIR="${GITHUB_WORKSPACE}/_project_docs/sling_auto" 
-          sling run -r replication-franchise.yaml
+          echo "$SERVICE_KEY_JSON" > ${GITHUB_WORKSPACE}/service_key.json
+        env:
+          SERVICE_KEY_JSON: ${{ secrets.SERVICE_KEY_JSON }}
 
       - name: Run Sling Data Loader - NBA Replication
         working-directory: sling
