@@ -8,6 +8,6 @@ defaults:
 
 streams:
   nba_data.games_response:
-    primary_key: id
+    update_key: _airbyte_emitted_at
   nba_data.teams_response:
-    primary_key: id
+    update_key: _airbyte_emitted_at
