@@ -27,7 +27,7 @@ connections:
   GOOGLE-STORAGE:
     type: gs
     bucket: franchise-data
-    key_file: service_key.json
+    key_file: ${GITHUB_WORKSPACE}/service_key.json
 
 # Global variables for specific settings, available to all connections at runtime
 variables:
