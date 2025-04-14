@@ -10,9 +10,13 @@ defaults:
 streams:
   "gs://franchise-data/actives.csv":
     primary_key: team_id
+    update_key: _sling_loaded_at
   "gs://franchise-data/coaches.csv":
     primary_key: id
+    update_key: _sling_loaded_at
   "gs://franchise-data/general_managers.csv":
     primary_key: id
+    update_key: _sling_loaded_at
   "gs://franchise-data/inactives.csv":
     primary_key: id
+    update_key: _sling_loaded_at
