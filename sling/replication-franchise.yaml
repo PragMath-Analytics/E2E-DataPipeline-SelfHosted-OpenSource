@@ -3,12 +3,16 @@ target: PG-ANALYTICS
 
 defaults:
   object: 'raw_google_sheets.franchise_{stream_file_name}'
-  mode: full-refresh
+  mode: incremental
   source_options:
   format: csv
 
 streams:
   "gs://franchise-data/actives.csv":
+    primary_key: team_id
   "gs://franchise-data/coaches.csv":
+    primary_key: id
   "gs://franchise-data/general_managers.csv":
+    primary_key: id
   "gs://franchise-data/inactives.csv":
+    primary_key: id
