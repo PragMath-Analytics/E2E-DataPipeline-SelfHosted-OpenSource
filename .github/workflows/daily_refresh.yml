@@ -51,10 +51,11 @@ jobs:
           sed -i "s|<B_DATABASE_HOST>|${B_DATABASE_HOST}|g" ${GITHUB_WORKSPACE}/_project_docs/sling_auto/env.yaml
           sed -i "s|<B_DATABASE_PORT>|${B_DATABASE_PORT}|g" ${GITHUB_WORKSPACE}/_project_docs/sling_auto/env.yaml
           
-      #- name: Set up Google Service Key file
-        #run: |
-          ## Write the secret content into the file
-          #echo "${{ secrets.SERVICE_KEY_JSON }}" > ${GITHUB_WORKSPACE}/sling/service_key.json
+      - name: Create service key file
+        run: |
+          echo "$SERVICE_KEY_JSON" > ${GITHUB_WORKSPACE}/service_key.json
+        env:
+          SERVICE_KEY_JSON: ${{ secrets.SERVICE_KEY_JSON }}
 
       - name: Run Sling Data Loader - NBA Replication
         working-directory: sling
@@ -62,11 +63,11 @@ jobs:
           export SLING_HOME_DIR="${GITHUB_WORKSPACE}/_project_docs/sling_auto"
           sling run -r replication-nba.yaml
 
-      #- name: Run Sling Data Loader - Franchise Replication
-        #working-directory: sling
-        #run: |
-          #export SLING_HOME_DIR="${GITHUB_WORKSPACE}/_project_docs/sling_auto" 
-          #sling run -r replication-franchise.yaml
+      - name: Run Sling Data Loader - Franchise Replication
+        working-directory: sling
+        run: |
+          export SLING_HOME_DIR="${GITHUB_WORKSPACE}/_project_docs/sling_auto" 
+          sling run -r replication-franchise.yaml
 
       - name: Install dbt
         run: pip install dbt-core==1.8.7 dbt-postgres==1.8.2
