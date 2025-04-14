@@ -77,7 +77,7 @@ jobs:
 
       - name: Deploy & Test Models (dbt build)
         run: > 
-          dbt build -s warehouse marts
+          dbt build -s staging warehouse marts
           --exclude dim_calendar_dates
           --profiles-dir _project_docs/automation 
           --target prod
