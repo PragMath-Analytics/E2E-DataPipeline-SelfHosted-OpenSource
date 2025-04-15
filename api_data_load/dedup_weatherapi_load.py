@@ -4,6 +4,8 @@ import pandas as pd
 import urllib.parse
 from sqlalchemy import create_engine, text
 from datetime import datetime
+import hashlib
+import json
 
 # Step 1: API request
 api_key = os.environ["API_KEY"]
@@ -27,8 +29,11 @@ df = pd.json_normalize(data)
 # Sanitize column names
 df.columns = df.columns.str.replace(r"\.", "_", regex=True)
 
-# Add timestamp
-df["load_timestamp"] = datetime.utcnow()
+def row_hash(row):
+    row_str = json.dumps(row.to_dict(), sort_keys=True)
+    return hashlib.sha256(row_str.encode("utf-8")).hexdigest()
+
+df["record_hash"] = df.apply(row_hash, axis=1)
 
 # Postgres connection config
 db_user = os.environ["SLING_USER"]
@@ -56,7 +61,7 @@ DELETE FROM {db_schema}.{table_name}
 WHERE ctid NOT IN (
     SELECT min(ctid)
     FROM {db_schema}.{table_name}
-    GROUP BY location_name, load_timestamp
+    GROUP BY record_hash
 );
 """
 
