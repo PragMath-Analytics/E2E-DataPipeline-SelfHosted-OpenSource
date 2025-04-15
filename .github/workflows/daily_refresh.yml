@@ -32,6 +32,14 @@ jobs:
         with:
           python-version: '3.9'
 
+      - name: Install dependencies
+        run: |
+          pip install requests pandas sqlalchemy psycopg2-binary
+
+      - name: Run weather loading script
+        working-directory: api_data_load
+        run: python dedup_weatherapi_load.py
+
       - name: Install Sling
         run: |
           pip install sling
