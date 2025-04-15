@@ -1,59 +1,89 @@
-## Our dbt Project
-This repository consists of a [dbt](https://www.getdbt.com/) project that transforms raw data sources into clear, formatted models for Analytics.
+## Our Data Pipeline Project
 
-To learn more about the overall architecture design & strategy can be found in our centralized handbook:
+This repository consists of a Data Pipeline Project that loads raw data using Sling and uses a Python script to load Weatherstack API data and uses dbt to transforms raw data sources loaded using Sling into clear, formatted models for Analytics.
+
+![Data Pipeline](images/Data_pipeline.jpg)
+
+To learn more about the overall architecture design & strategy, check our centralized handbook:
 - [Data Architecture Handbook](https://docs.google.com/document/d/1WmOnx_5QaGmo-kNWitd9jSEwvEnwqxiS0ZA1jmMV-v0/edit?usp=sharing)
+
+---
 
 ### Sources:
 Raw, unformatted data loaded directly from source systems using various data tools.
-- `nba_data` - The primary source of NBA statistics data captured from an API & loaded via Sling/Airbyte.
-    - Schema: `analytics.raw_nba_data`
-- `google_sheets` - Internally maintained reference sheets related to the project & loaded via Sling/Airbyte.
-    - Schema: `analytics.raw_google_sheets`
 
+- **`nba_data`** – The primary source of NBA statistics data captured from an API and loaded via Sling/Airbyte.
+  - Schema: `analytics.raw_nba_data`
+
+- **`google_sheets`** – Internally maintained reference sheets related to the project, loaded via Sling/Airbyte.
+  - Schema: `analytics.raw_google_sheets`
+
+- **External API Data** – Additional datasets loaded via Python scripts as part of the CI and Production workflows.
+  - These use secure API keys passed through GitHub Secrets and are integrated into the data pipeline for timely ingestion.
+  - Schema: `analytics.weather`
+
+---
 
 ### Environments:
-Transformed data models built via dbt with 3 distinct environments to enable a sustainable development workflow.
+Transformed data models and raw ingested data are organized into distinct environments for a sustainable development workflow.
+
 - **Development**
    - Schema: `analytics.dev_[your-name]`
-   - One per developer to avoid conflicts or overriding changes during development.
+   - One per developer to avoid conflicts or overriding changes.
+
 - **CI**
    - Schema: `analytics.ci`
-   - An isolated schema created specifically for testing Pull Request changes to ensure quality.
+   - An isolated schema for validating Pull Request changes.
+   - **Automated workflow job sequence:**
+     1. Load data using Sling
+     2. Ingest external API data via Python script
+     3. Run dbt build and test to validate models on data ingested using Sling
+
 - **Production**
    - Schemas: 
-        - `analytics.staging`
-        - `analytics.warehouse`
-        - `analytics.marts`
-   - Separation by layer for easier navigation and permission management.
+     - `analytics.staging`
+     - `analytics.warehouse`
+     - `analytics.marts`
+   - **Automated workflow job sequence:**
+     1. Load data using Sling
+     2. Ingest external Weatherstack API data via Python script
+     3. Run dbt transformations and tests on data ingested using Sling
+
+---
 
 ### How to Get Started?
-1. Create your local development environment
-   - Use a local IDE (ex. VS Code), dbt Cloud or GitHub Codespaces
-2. Clone the current repo (or create a new one)
+1. **Set up your local development environment**
+   - Use your preferred IDE (e.g. VS Code), dbt Cloud, or GitHub Codespaces
+2. **Clone the current repo (or create a new one)**
    - Checkout the `main` branch and run `git pull` to sync changes
-3. Create a New Branch for your new changes
-   - First, run `git branch your_branch_name` to create a new branch
-   - Then run `git checkout your_branch_name` to switch to it
-4. Start developing!
-   - Commit & Sync all changes to your branch during development
-   - *IMPORTANT* - All changes should follow the team [Style Guide](_project_docs/style_guide.md)
-5. Create Pull Request
-   - When development is complete, Push your branch to GitHub & create a request
-   - Request peer reviews & confirm  automated CI jobs succeed
-6. Merge changes to the `main` branch
-   - Confirm automated post-merge jobs succeed
-7. Get latest changes in your local environment
-   - Checkout the `main` branch in your local terminal
-   - Run "git pull" to sync the latest version of the code
-8. Continue to develop & repeat the process
+3. **Create a new branch for your changes**
+   - `git branch your_branch_name` then `git checkout your_branch_name`
+4. **Start developing**
+   - Follow team conventions and [Style Guide](_project_docs/style_guide.md)
+5. **Create a Pull Request**
+   - Push your branch and request review
+   - CI workflow will run the full job sequence:
+     - Sling sync
+     - API data ingestion
+     - dbt build and tests
+6. **Merge to `main`**
+   - Post-merge, Production workflow will run the same job sequence
+7. **Pull latest updates**
+   - `git checkout main` then `git pull`
+8. **Repeat the cycle**
+
+---
 
 ### Notes
-- Provide any other important call-outs of platform-specific information here.
+- **API Secrets & Credentials**: Stored securely using GitHub Secrets and injected into CI/CD workflows.
+- **Sling Configs**: Refer to `sling env_template.yaml` and replication files for setting up data source syncing.
+
+---
 
 ### Resources:
+- Learn more about Sling in the [Sling Documentation](https://docs.slingdata.io/)
+- Refer to the [Weatherstack API Documentation](https://weatherstack.com/documentation) for data ingestion setup
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
-
+- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions
+- Join the [chat](https://community.getdbt.com/) on Slack
+- Read [the blog](https://blog.getdbt.com/) for updates and best practices
