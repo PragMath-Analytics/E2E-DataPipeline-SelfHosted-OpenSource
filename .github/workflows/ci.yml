@@ -33,7 +33,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests pandas sqlalchemy psycopg2-binary pyyaml
+          pip install requests pandas sqlalchemy psycopg2-binary
 
       - name: Run weather loading script
         working-directory: api_data_load
