@@ -11,3 +11,6 @@ streams:
     update_key: _airbyte_emitted_at
   nba_data.teams_response:
     update_key: _airbyte_emitted_at
+
+env:
+  SLING_ALLOW_EMPTY: true
