@@ -2,5 +2,115 @@ version: 2
 
 models:
   - name: stg_gsheets__franchise_actives
+    description: '{{ doc("stg_gsheets__franchise_actives_description") }}'
+    columns:
+      - name: team_id
+        data_type: integer
+        description: An integer value representing the unique identifier for each team.
+      - name: franchise_id
+        data_type: integer
+        description: An integer representing the unique identifier for each franchise.
+      - name: franchise_name
+        data_type: text
+        description: The name of the franchise. This is a text field.
+      - name: url
+        data_type: text
+        description: The URL of the franchise's official website or relevant web page.
+      - name: year_started
+        data_type: integer
+        description: The year in which the franchise started its operations. It is represented as an integer.
+      - name: year_ended
+        data_type: integer
+        description: The year in which the franchise ended. If the franchise is still active, this field will be null.
+      - name: years_active
+        data_type: integer
+        description: This column represents the number of years a franchise has been active. It is calculated as the difference between the year the franchise ended and the year it started. If the franchise is currently active, the current year is used as the end year.
+      - name: games_played
+        data_type: integer
+        description: The total number of games played by the franchise.
+      - name: wins
+        data_type: integer
+        description: The 'wins' column represents the total number of games won by the franchise.
+      - name: losses
+        data_type: integer
+        description: The 'losses' column represents the total number of games lost by the franchise. It is an integer value derived from the 'LOSSES' column in the source table.
+      - name: winning_percentage
+        data_type: numeric
+        description: This column represents the winning percentage of a franchise. It is calculated by dividing the number of wins by the total number of games played. The value is represented as a decimal.
+      - name: playoffs_made
+        data_type: integer
+        description: The 'playoffs_made' column represents the total number of times the franchise has made it to the playoffs. It is an integer value derived from the 'PO' column in the source data.
+      - name: division_titles
+        data_type: integer
+        description: The number of division titles won by the franchise.
+      - name: conference_titles
+        data_type: integer
+        description: The number of conference titles won by the franchise.
+      - name: league_titles
+        data_type: integer
+        description: The 'league_titles' column represents the total number of league titles that a franchise has won. It is an integer value.
+      - name: is_current
+        data_type: boolean
+        description: A boolean field indicating whether the franchise is currently active. If the franchise is active, the value is true; if it is not active, the value is false.
+
   - name: stg_gsheets__franchise_general_managers
+    description: '{{ doc("stg_gsheets__franchise_general_managers") }}'
+    columns:
+      - name: general_manager_id
+        description: This is an integer column that uniquely identifies each general manager. It is derived from the 'ID' column in the source table.
+        data_type: integer
+      - name: team_name
+        description: The name of the team that the general manager is associated with. This is a text field.
+        data_type: text
+      - name: college_name
+        description: The name of the college that the general manager attended.
+        data_type: text
+      - name: division
+        description: The division column represents the division in which the team, managed by the general manager, competes. This is a text field.
+        data_type: text
+      - name: conference
+        description: The conference column represents the conference in which the team, managed by the general manager, competes. This is a text field.
+        data_type: text
+      - name: general_manager
+        description: The 'general_manager' column contains the name of the general manager for each team. If the position is vacant, the value will be NULL.
+        data_type: text
+      - name: professional_career
+        description: This column contains the details of the professional career of the general manager. It includes the roles they have held in the past, the organizations they have worked for, and the duration of their tenure in each role.
+        data_type: text
+      - name: year_hired
+        description: The year in which the general manager was hired by the team. This is an integer value.
+        data_type: integer
+      - name: as_of_date
+        description: The 'as_of_date' column represents the date as of which the data is valid. It is of 'date' data type. This column is used to calculate the 'years_active' column, which represents the number of years the general manager has been active.
+        data_type: date
+      - name: years_active
+        description: This column represents the number of years a general manager has been active. It is calculated by subtracting the year the general manager was hired from the current year.
+        data_type: double precision
+
   - name: stg_gsheets__franchise_head_coaches
+    description: '{{ doc("stg_gsheets__franchise_head_coaches") }}'
+    columns:
+      - name: head_coach_id
+        description: This is an integer column that uniquely identifies each head coach in the dataset. It is derived from the 'ID' column in the source table 'franchise_coaches' from the 'raw_google_sheets' schema in the 'analytics' database.
+        data_type: integer
+      - name: head_coach
+        description: This column contains the name of the head coach for a specific franchise. It is a text field and can contain any valid string value.
+        data_type: text
+      - name: team_name
+        description: The name of the team that the head coach is currently coaching. This is a text field.
+        data_type: text
+      - name: division
+        description: The division in which the team of the head coach competes.
+        data_type: text
+      - name: conference
+        description: The conference in which the team of the head coach is participating. This is a text field.
+        data_type: text
+      - name: start_date
+        description: The date when the head coach started their tenure with the team. It is stored in the 'date' data type format.
+        data_type: date
+      - name: as_of_date
+        description: The 'as_of_date' column represents the date up to which the data is valid. It is of 'date' data type. This column is used to calculate the 'years_active' column, which represents the number of years a head coach has been active.
+        data_type: date
+      - name: years_active
+        description: This column represents the number of years a head coach has been active. It is calculated by subtracting the year of the start date from the year of the as of date.
+        data_type: double precision
