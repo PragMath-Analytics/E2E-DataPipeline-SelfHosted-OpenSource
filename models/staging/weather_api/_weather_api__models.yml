@@ -2,3 +2,92 @@ version: 2
 
 models:
   - name: stg_weatherapi__weather
+    columns:
+      - name: city_full_name
+        data_type: text
+        tests:
+          - not_null
+      - name: city
+        data_type: text
+        tests:
+          - not_null
+      - name: country
+        data_type: text
+        data_tests:
+          - not_null
+      - name: region
+        data_type: text
+        tests:
+          - not_null
+      - name: latitude
+        data_type: numeric
+        tests:
+          - not_null
+      - name: longitude
+        data_type: numeric
+        tests:
+          - not_null
+      - name: timezone
+        data_type: text
+        tests:
+          - not_null
+      - name: local_time
+        data_type: timestamp without time zone
+        tests:
+          - not_null
+      - name: temperature_c
+        data_type: bigint
+        tests:
+          - not_null
+      - name: weather_code
+        data_type: bigint
+        tests:
+          - not_null
+      - name: weather_desc
+        data_type: text
+        tests:
+          - not_null
+      - name: wind_speed_kph
+        data_type: bigint
+        tests:
+          - not_null
+      - name: wind_degree
+        data_type: bigint
+        tests:
+          - not_null
+      - name: wind_direction
+        data_type: text
+        tests:
+          - not_null
+      - name: pressure_mb
+        data_type: bigint
+        tests:
+          - not_null
+      - name: precip_mm
+        data_type: bigint
+        tests:
+          - not_null
+      - name: humidity_pct
+        data_type: bigint
+        tests:
+          - not_null
+      - name: cloud_cover_pct
+        data_type: bigint
+        tests:
+          - not_null
+      - name: feels_like_c
+        data_type: bigint
+        tests:
+          - not_null
+      - name: uv_index
+        data_type: bigint
+        tests:
+          - not_null
+      - name: visibility_km
+        data_type: bigint
+        tests:
+          - not_null
+      - name: is_day
+        data_type: text
+        tests:
+          - not_null
