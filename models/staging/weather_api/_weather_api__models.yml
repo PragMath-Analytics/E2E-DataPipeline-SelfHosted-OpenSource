@@ -2,3 +2,71 @@ version: 2
 
 models:
   - name: stg_weatherapi__weather
+    description: '{{ doc("stg_weatherapi__weather_description") }}'
+    columns:
+      - name: city_full_name
+        description: The full name of the city, including any additional descriptors or identifiers. This is derived from the 'request_query' field in the source data.
+        data_type: text
+      - name: city
+        description: The 'city' column represents the name of the city for which the weather data is reported. It is extracted from the 'location_name' field in the source data. The data type of this column is text.
+        data_type: text
+      - name: country
+        description: The country where the weather data is recorded. This is derived from the 'location_country' field in the source data.
+        data_type: text
+      - name: region
+        description: The 'region' column represents the geographical region where the city is located. This is derived from the 'location_region' field in the source data.
+        data_type: text
+      - name: latitude
+        description: The latitude of the city. This is a numeric value with a precision of 6 decimal places.
+        data_type: numeric
+      - name: longitude
+        description: The longitude of the city. This is a numeric value with a precision of 6 decimal places, representing the east-west position of a point on the Earth's surface.
+        data_type: numeric
+      - name: timezone
+        description: The timezone of the city where the weather data was recorded. This is represented as a text string.
+        data_type: text
+      - name: local_time
+        description: The local time of the city where the weather data was recorded. This is a timestamp without a time zone.
+        data_type: timestamp without time zone
+      - name: temperature_c
+        description: The current temperature in Celsius.
+        data_type: bigint
+      - name: weather_code
+        description: This column represents the unique code associated with the current weather condition. It is a numeric value and is derived from the 'current_weather_code' field in the source data.
+        data_type: bigint
+      - name: weather_desc
+        description: This column contains a textual description of the current weather conditions in the specified location. The data is sourced from the 'current_weather_descriptions' field in the 'weather_data' table of the 'weather' schema in the 'analytics' database.
+        data_type: text
+      - name: wind_speed_kph
+        description: This column represents the current wind speed in kilometers per hour for the specified location.
+        data_type: bigint
+      - name: wind_degree
+        description: This column represents the degree of the wind direction. It is measured in degrees, with the value ranging from 0 to 360. A value of 0 degree indicates the wind is coming from the North, 90 from the East, 180 from the South, and 270 from the West.
+        data_type: bigint
+      - name: wind_direction
+        description: This column represents the direction from which the wind is coming. The value is represented as a string, with cardinal directions such as 'N' for North, 'S' for South, 'E' for East, and 'W' for West. It can also include intercardinal directions like 'NE' for Northeast, 'NW' for Northwest, 'SE' for Southeast, and 'SW' for Southwest.
+        data_type: text
+      - name: pressure_mb
+        description: This column represents the atmospheric pressure in millibars at the time of data collection.
+        data_type: bigint
+      - name: precip_mm
+        description: The 'precip_mm' column represents the amount of precipitation in millimeters. This data is sourced from the 'current_precip' field in the 'weather_data' table in the 'weather' schema of the 'analytics' database.
+        data_type: bigint
+      - name: humidity_pct
+        description: This column represents the percentage of humidity in the air at the given location and time. The data is sourced from the 'current_humidity' field in the 'weather_data' table in the 'weather' schema of the 'analytics' database.
+        data_type: bigint
+      - name: cloud_cover_pct
+        description: This column represents the percentage of cloud cover at the given location and time. It is derived from the 'current_cloudcover' field in the source data. The values are integers and can range from 0 (clear sky) to 100 (completely cloudy).
+        data_type: bigint
+      - name: feels_like_c
+        description: This column represents the 'feels like' temperature in degrees Celsius. It is a measure of how hot or cold it really feels like outside. This is calculated based on factors such as wind speed and humidity.
+        data_type: bigint
+      - name: uv_index
+        description: The UV Index is a measure of the intensity of the sun's ultraviolet (UV) radiation at a specific place and time. The values range from 0 (no UV radiation) to 11 or more (extreme UV radiation). Higher values indicate a greater risk of sunburn and skin damage.
+        data_type: bigint
+      - name: visibility_km
+        description: This column represents the visibility in kilometers at the given location and time. It is derived from the 'current_visibility' field in the source data.
+        data_type: bigint
+      - name: is_day
+        description: A text field indicating whether the current local time falls within the day period. 'Yes' indicates daytime, 'No' indicates nighttime.
+        data_type: text
