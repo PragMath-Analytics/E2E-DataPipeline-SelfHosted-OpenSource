@@ -41,7 +41,7 @@ jobs:
 
       - name: Run weather loading script
         working-directory: api_data_load
-        run: python dedup_weatherapi_load.py
+        run: python weatherapi_data_load.py
 
       - name: Install Sling
         run: |
