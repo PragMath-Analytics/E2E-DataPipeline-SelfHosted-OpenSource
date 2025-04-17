@@ -1,4 +1,4 @@
-# Note: "tests" are now called "data_tests" & have been updated accordingly
+# Note: "data_tests" are now called "data_data_tests" & have been updated accordingly
 # You may delete these comments
 version: 2
 
@@ -15,18 +15,18 @@ models:
     columns:
       - name: city_country
         data_type: text
-        tests:
+        data_tests:
           - not_null
       - name: city
         data_type: text
-        tests:
+        data_tests:
           - not_null
       - name: country
         data_type: text
-        tests:
+        data_tests:
           - not_null
       - name: local_time
         data_type: timestamp without time zone
-        tests:
+        data_tests:
           - not_null
 
