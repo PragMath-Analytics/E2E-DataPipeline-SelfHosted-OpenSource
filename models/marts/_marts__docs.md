@@ -16,3 +16,23 @@ Other game & team related detail inslude (but not limited to):
 * Day Info (Date, Weekday, Month)
 * Game Status (Regulation, Overtime)
 {% enddocs %}
+
+{% docs latest_weather_day_description %}
+A breakdown of daily weather metrics and contextual details for various cities.
+
+This model is presented at a city-day granularity and is built with reusability in mind. The expectation is that the data will be aggregated in various ways, while still providing access to the most recent underlying weather readings.
+
+The metrics in this model include (but are not limited to):
+* Temperature and 'feels like' temperature
+* Weather codes and descriptions
+* Wind speed and direction
+* Atmospheric pressure and precipitation
+* Humidity, cloud cover, UV index, and visibility
+
+Other contextual details include (but are not limited to):
+* City, region, and country
+* Geographic coordinates
+* Local time and day/night indicator
+
+The most recent weather record is selected per city per day using row ranking logic.
+{% enddocs %}
