@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: weather
+    database: analytics
+    schema: weather
+    description: "Source weather data ingested from external APIs"
+
+    tables:
+      - name: weather_data
+        description: "Raw weather data pulled from Weatherstack API"
