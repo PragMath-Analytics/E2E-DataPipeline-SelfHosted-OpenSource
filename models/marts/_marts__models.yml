@@ -1,4 +1,4 @@
-# Note: "data_tests" are now called "data_data_tests" & have been updated accordingly
+# Note: "tests" are now called "data_tests" & have been updated accordingly
 # You may delete these comments
 version: 2
 
