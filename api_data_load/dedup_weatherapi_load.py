@@ -147,7 +147,7 @@ if __name__ == "__main__":
     cities = load_yaml_config(config_path)
     api_key = os.environ["API_KEY"]
 
-    DB_SCHEMA = "weather"
+    DB_SCHEMA = "raw_weather"
     TABLE_NAME = "weather_data"
 
     main(api_key, cities, DB_SCHEMA, TABLE_NAME)
