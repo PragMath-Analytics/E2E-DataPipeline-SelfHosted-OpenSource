@@ -10,5 +10,23 @@ models:
         data_tests:
           - unique
           - not_null
-  
+
   - name: latest_weather_day
+    columns:
+      - name: city_country
+        data_type: text
+        tests:
+          - not_null
+      - name: city
+        data_type: text
+        tests:
+          - not_null
+      - name: country
+        data_type: text
+        tests:
+          - not_null
+      - name: local_time
+        data_type: timestamp without time zone
+        tests:
+          - not_null
+
