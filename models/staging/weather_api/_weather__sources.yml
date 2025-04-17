@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: weather
+    database: analytics
+    schema: raw_weather
+    tables:
+      - name: weather_data
