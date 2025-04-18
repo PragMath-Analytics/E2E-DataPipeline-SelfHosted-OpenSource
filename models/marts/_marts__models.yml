@@ -1,5 +1,3 @@
-# Note: "tests" are now called "data_tests" & have been updated accordingly
-# You may delete these comments
 version: 2
 
 models:
@@ -112,15 +110,21 @@ models:
   - name: latest_weather_day
     description: '{{ doc("latest_weather_day_description") }}'
     columns:
-      - name: city_full_name
+      - name: city_country
         description: This column contains the full name of the city for which the weather data is recorded.
         data_type: text
+        data_tests:
+          - not_null
       - name: city
         description: The 'city' column contains the short name of the city for which the weather data is reported. This column is of text data type.
         data_type: text
+        data_tests:
+          - not_null
       - name: country
         description: The country where the weather data was recorded. This is a text field.
         data_type: text
+        data_tests:
+          - not_null
       - name: region
         description: The 'region' column represents the geographical region in which the city is located. This is a text field.
         data_type: text
@@ -136,6 +140,8 @@ models:
       - name: local_time
         description: The local time of the city where the weather data was recorded. This is a timestamp without a time zone.
         data_type: timestamp without time zone
+        data_tests:
+          - not_null
       - name: temperature_c
         description: This column represents the temperature in Celsius for the given city at the specified local time. It is derived from the 'stg_weatherapi__weather' table.
         data_type: bigint
@@ -181,3 +187,5 @@ models:
       - name: rn
         description: This column represents the row number assigned to each record within a partition defined by the city and the day of local time. The row number is assigned in descending order of local time, meaning the latest record for each city and day gets the row number 1.
         data_type: bigint
+
+

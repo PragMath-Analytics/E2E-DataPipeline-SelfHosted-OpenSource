@@ -8,7 +8,7 @@ source_table as (
 final as (
 
     select 
-        request_query             as city_full_name,
+        request_query             as city_country,
         location_name             as city,
         location_country          as country,
         location_region           as region,
