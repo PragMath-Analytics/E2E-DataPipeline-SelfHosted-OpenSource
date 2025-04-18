@@ -1,4 +1,7 @@
-# dbt Style Guide
+# Our Project Style Guide
+
+## Sling Replication File Naming
+Our replication files are named as 'replication-{source_name}.yaml' and its dependent files are named as 'env_template.yaml' and 'env.yaml'.
 
 ## Model Naming
 Our models (typically) fit into three main categories: staging, warehouse, marts. For more detail about aspects of this structure, check out [the dbt best practices](https://docs.getdbt.com/guides/best-practices/how-we-structure/1-guide-overview). 
@@ -15,13 +18,25 @@ ssp_analytics
 ├── _project_docs
 │   ├── automation
 │   │   │   └── profiles.yml
+│   │──sling_auto
+│   │        └── .sling.db
+│   │        └── .sling.db-shm
+│   │        └── .sling.db-wal
+│   │        └── env_template.yaml
+│   │        └── env.yaml
 │   └── style_guide.md
 ├── analyses
+├── api_data_load
+│   └── api_config.yaml
+│   └── weatherapi_data_load.py
+├── images
+│   └── Data_pipeline.jpg
 ├── seeds
-│   └── some_data.csv
+├── sling
+│   └── replication-franchise.yaml
+│   └── replication-nba.yaml
 ├── snapshots
 ├── tests
-│   └── assert_some_test_scenario.sql
 ├── macros
 │   ├── _macros__definitions.yml
 │   ├── _macros__docs.md
@@ -31,6 +46,7 @@ ssp_analytics
 │   │   ├── _marts__docs.md
 │   │   ├── _marts__models.yml
 │   │   └── nba_games_detail.sql
+│   │   └── latest_weather_day.sql
 │   ├── staging
 │   │   ├── nba
 │   │   │   ├── _nba__docs.md
@@ -38,12 +54,17 @@ ssp_analytics
 │   │   │   ├── _nba__sources.yml
 │   │   │   ├── stg_nba__games.sql
 │   │   │   └── stg_nba__teams.sql
-│   │   └── gsheets
-│   │       ├── _gsheets__models.yml
-│   │       ├── _gsheets__sources.yml
-│   │       ├── stg_gsheets__franchise_actives.yml
-│   │       ├── stg_gsheets__franchise_general_managers.yml
-│   │       └── stg_gsheets__franchise_head_coaches.sql
+│   │   │── gsheets
+│   │   │   ├── _gsheets__models.yml
+│   │   │   ├── _gsheets__sources.yml
+│   │   │   ├── stg_gsheets__franchise_actives.yml
+│   │   │   ├── stg_gsheets__franchise_general_managers.yml
+│   │   │   └── stg_gsheets__franchise_head_coaches.sql
+│   │   │── weather_api
+│   │   │   ├── _weather__docs.md
+│   │   │   ├── _weather__sources.yml
+│   │   │   ├── _weather_api__models.yml
+│   │   │   ├── stg_weatherapi__weather.sql
 │   ├── warehouse
 │   │   ├── dimensions
 │   │   │   ├── _dimensions__docs.md
