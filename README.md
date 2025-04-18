@@ -5,7 +5,7 @@ This repository consists of a Data Pipeline Project that loads raw data using Sl
 ![Data Pipeline](images/Data_pipeline.jpg)
 
 To learn more about the overall architecture design & strategy, check our centralized handbook:
-- [Data Architecture Handbook](https://docs.google.com/document/d/1WmOnx_5QaGmo-kNWitd9jSEwvEnwqxiS0ZA1jmMV-v0/edit?usp=sharing)
+- [Data Architecture Handbook](https://docs.google.com/document/d/1GY9_11JGQi0TgqWVrzwd9BEdQ5UqKxSXLV8cctR9CqY/edit?usp=sharing)
 
 ---
 
