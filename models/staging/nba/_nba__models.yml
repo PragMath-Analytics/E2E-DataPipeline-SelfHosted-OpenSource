@@ -2,4 +2,125 @@ version: 2
 
 models:
   - name: stg_nba__games
+    description: '{{ doc("stg_nba__games_description") }}'
+    columns:
+      - name: game_id
+        description: An integer representing the unique identifier for each game.
+        data_type: integer
+      - name: game_at
+        description: This column represents the timestamp of when the game was played. The data type is timestamp without time zone.
+        data_type: timestamp without time zone
+      - name: game_date
+        description: The date when the game was played. It is stored as a date without a time zone.
+        data_type: date
+      - name: game_time
+        description: The 'game_time' column represents the time at which the game was played. The data type of this column is 'time without time zone'.
+        data_type: time without time zone
+      - name: away_team_id
+        description: This is an integer column that represents the unique identifier of the away team in a particular NBA game.
+        data_type: integer
+      - name: away_team_name
+        description: The name of the away team participating in the NBA game.
+        data_type: text
+      - name: home_team_id
+        description: An integer representing the unique identifier for the home team in a specific NBA game.
+        data_type: integer
+      - name: home_team_name
+        description: The name of the home team participating in the NBA game.
+        data_type: text
+      - name: league_id
+        description: An integer representing the unique identifier for the league in which the game was played.
+        data_type: integer
+      - name: league_name
+        description: The name of the league in which the game was played. This is extracted from the 'league' JSON object in the source data.
+        data_type: text
+      - name: season
+        description: The season column represents the NBA season in which the game was played. It is extracted from the 'season' key in the 'league' JSON object from the source data. The data type of this column is text.
+        data_type: text
+      - name: away_team_score_total
+        description: This column represents the total score of the away team in the game.
+        data_type: integer
+      - name: away_team_score_quarter_1
+        description: This column represents the total score of the away team at the end of the first quarter. It is an integer value.
+        data_type: integer
+      - name: away_team_score_quarter_2
+        description: The total score of the away team in the second quarter of the game.
+        data_type: integer
+      - name: away_team_score_quarter_3
+        description: The total score of the away team at the end of the third quarter. This is an integer value.
+        data_type: integer
+      - name: away_team_score_quarter_4
+        description: This column represents the total score of the away team at the end of the fourth quarter. It is an integer value.
+        data_type: integer
+      - name: away_team_score_overtime
+        description: This column represents the total score of the away team during the overtime period of the game. It is an integer value. If there was no overtime during the game, the value will be 0.
+        data_type: integer
+      - name: home_team_score_total
+        description: This column represents the total score of the home team for a particular game. It is an integer value.
+        data_type: integer
+      - name: home_team_score_quarter_1
+        description: This column represents the total score of the home team at the end of the first quarter. It is an integer value.
+        data_type: integer
+      - name: home_team_score_quarter_2
+        description: The total score of the home team at the end of the second quarter. This is an integer value.
+        data_type: integer
+      - name: home_team_score_quarter_3
+        description: This column represents the total score of the home team at the end of the third quarter. It is an integer value.
+        data_type: integer
+      - name: home_team_score_quarter_4
+        description: This column represents the total score of the home team at the end of the fourth quarter. It is an integer value.
+        data_type: integer
+      - name: home_team_score_overtime
+        description: This column represents the total score of the home team during the overtime period of the game. It is an integer value. If there was no overtime during the game, the value will be 0.
+        data_type: integer
+      - name: is_home_team_win
+        description: A boolean value indicating whether the home team won the game. If the total score of the home team is greater than the total score of the away team, the value is true; otherwise, it is false.
+        data_type: boolean
+      - name: is_away_team_win
+        description: A boolean field indicating whether the away team won the game. If the total score of the away team is greater than the home team, this field is set to true, otherwise false.
+        data_type: boolean
+      - name: point_differential
+        description: The absolute difference between the total scores of the home team and the away team. It is calculated as the absolute value of the home team's total score minus the away team's total score.
+        data_type: integer
+      - name: status_long
+        description: This column represents the long form status of the game. It provides detailed information about the current status of the game.
+        data_type: text
+      - name: status_short
+        description: This column contains the short form of the game status. It indicates the current status of the game, such as whether it's ongoing, completed, or scheduled.
+        data_type: text
+      - name: country_id
+        description: An integer representing the unique identifier for the country where the game was played.
+        data_type: integer
+      - name: country_code
+        description: The country code represents the international standard codes for the representation of the names of countries. It is extracted from the 'country' JSON object in the source data.
+        data_type: text
+      - name: country_name
+        description: The name of the country where the game was played.
+        data_type: text
+      - name: timezone
+        description: The timezone in which the game was played.
+        data_type: text
+      - name: created_at
+        description: This column represents the timestamp when the game record was created. It is of type 'timestamp with time zone'.
+        data_type: timestamp with time zone
+      - name: is_latest
+        description: A boolean flag indicating if the record is the latest. It is determined by the row number when partitioned by game id and ordered by the timestamp when the data was emitted. If the row number is 1, then the record is the latest.
+        data_type: boolean
   - name: stg_nba__teams
+    description: '{{ doc("stg_nba__teams_description") }}'
+    columns:
+      - name: team_id
+        description: An integer representing the unique identifier for each NBA team.
+        data_type: integer
+      - name: team_name
+        description: The name of the NBA team.
+        data_type: text
+      - name: team_logo_url
+        description: This column contains the URL of the team's logo. It is a text field and can be used to retrieve the image of the team's logo for display purposes.
+        data_type: text
+      - name: country_name
+        description: The name of the country where the NBA game was played.
+        data_type: text
+      - name: is_latest
+        description: A boolean flag indicating if the record is the latest. This is determined by the row number when partitioned by game id and ordered by the emitted timestamp in descending order. If the row number is 1, then the record is considered the latest.
+        data_type: boolean

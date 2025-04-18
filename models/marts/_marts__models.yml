@@ -1,5 +1,3 @@
-# Note: "tests" are now called "data_tests" & have been updated accordingly
-# You may delete these comments
 version: 2
 
 models:
@@ -8,25 +6,186 @@ models:
     columns:
       - name: game_id
         data_tests:
-          - unique
           - not_null
+          - unique
+        description: An integer value that uniquely identifies each game in the NBA.
+        data_type: integer
+      - name: game_date
+        description: The date on which the game was played. It is represented in the format 'YYYY-MM-DD'.
+        data_type: date
+      - name: short_weekday_name
+        description: This column represents the abbreviated name of the weekday on which the game was played. The values are text strings, such as 'Mon' for Monday, 'Tue' for Tuesday, etc.
+        data_type: text
+      - name: short_month_name
+        description: This column represents the abbreviated name of the month in which the game was played. The value is a text string.
+        data_type: text
+      - name: short_month_year
+        description: This column represents the short form of the month and year in which the game was played. The format is 'MMM-YYYY'. For example, 'Jan-2020' represents January 2020.
+        data_type: text
+      - name: status_long
+        description: This column represents the status of the game. It provides information about whether the game has started, is in progress, or has ended.
+        data_type: text
+      - name: home_team_name
+        description: The name of the home team participating in the NBA game.
+        data_type: text
+      - name: home_team_head_coach
+        description: This column represents the name of the head coach of the home team for a particular NBA game.
+        data_type: text
+      - name: home_team_general_manager
+        description: This column represents the name of the general manager of the home team for a particular NBA game.
+        data_type: text
+      - name: home_team_division
+        description: This column represents the division of the home team in the NBA. The NBA is divided into two conferences (Eastern and Western), and each conference is further divided into three divisions. This column provides the division name for the home team.
+        data_type: text
+      - name: home_team_conference
+        description: This column represents the conference to which the home team belongs in the NBA. The NBA is divided into two conferences, the Eastern Conference and the Western Conference.
+        data_type: text
+      - name: away_team_name
+        description: The name of the team that played the game as the away team.
+        data_type: text
+      - name: away_team_head_coach
+        description: The name of the head coach for the away team in the game.
+        data_type: text
+      - name: away_team_general_manager
+        description: This column contains the name of the general manager of the away team for each game.
+        data_type: text
+      - name: away_team_division
+        description: The division of the away team in the NBA. Divisions are subgroups within the two conferences (Eastern and Western) that the NBA uses to organize its 30 teams.
+        data_type: text
+      - name: away_team_conference
+        description: This column represents the conference to which the away team belongs in the NBA. The NBA is divided into two conferences, the Eastern Conference and the Western Conference.
+        data_type: text
+      - name: home_team_score_total
+        description: This column represents the total score of the home team for a particular game.
+        data_type: integer
+      - name: home_team_score_quarter_1
+        description: This column represents the total score of the home team at the end of the first quarter.
+        data_type: integer
+      - name: home_team_score_quarter_2
+        description: The total score of the home team at the end of the second quarter.
+        data_type: integer
+      - name: home_team_score_quarter_3
+        description: The total score of the home team at the end of the third quarter.
+        data_type: integer
+      - name: home_team_score_quarter_4
+        description: The total score of the home team at the end of the fourth quarter.
+        data_type: integer
+      - name: home_team_score_overtime
+        description: This column represents the total score of the home team during the overtime period of the game. It is an integer value.
+        data_type: integer
+      - name: average_home_pts_per_quarter
+        description: This column represents the average points scored by the home team per quarter in a game. It is calculated by dividing the total points scored by the home team by the number of quarters played. This field is a numeric type.
+        data_type: numeric
+      - name: away_team_score_total
+        description: This column represents the total score of the away team in a particular game. It is an integer value.
+        data_type: integer
+      - name: away_team_score_quarter_1
+        description: This column represents the total score of the away team at the end of the first quarter of the game.
+        data_type: integer
+      - name: away_team_score_quarter_2
+        description: The total score of the away team in the second quarter of the game.
+        data_type: integer
+      - name: away_team_score_quarter_3
+        description: The total score of the away team at the end of the third quarter.
+        data_type: integer
+      - name: away_team_score_quarter_4
+        description: This column represents the total score of the away team in the fourth quarter of the game.
+        data_type: integer
+      - name: away_team_score_overtime
+        description: This column represents the total score of the away team during the overtime period of a game. It is an integer value.
+        data_type: integer
+      - name: average_away_pts_per_quarter
+        description: This column represents the average points scored by the away team per quarter in a game. It is calculated by dividing the total points scored by the away team by the number of quarters played. This field is numeric and can be used to analyze the scoring efficiency of the away team.
+        data_type: numeric
+      - name: point_differential
+        description: The point differential column represents the difference in total points scored by the home team and the away team. A positive value indicates the home team scored more points, while a negative value indicates the away team scored more points.
+        data_type: integer
+      - name: home_team_win_count
+        description: This column represents the total number of games won by the home team in the NBA season. It is an integer value.
+        data_type: integer
+      - name: away_team_win_count
+        description: This column represents the total number of games won by the away team in the NBA season. It is an integer value.
+        data_type: integer
 
   - name: latest_weather_day
+    description: '{{ doc("latest_weather_day_description") }}'
     columns:
       - name: city_country
+        description: This column contains the full name of the city for which the weather data is recorded.
         data_type: text
         data_tests:
           - not_null
       - name: city
+        description: The 'city' column contains the short name of the city for which the weather data is reported. This column is of text data type.
         data_type: text
         data_tests:
           - not_null
       - name: country
+        description: The country where the weather data was recorded. This is a text field.
         data_type: text
         data_tests:
           - not_null
+      - name: region
+        description: The 'region' column represents the geographical region in which the city is located. This is a text field.
+        data_type: text
+      - name: latitude
+        description: The latitude of the city for which the weather data is recorded. It is a numeric value representing the geographical coordinate.
+        data_type: numeric
+      - name: longitude
+        description: This column represents the longitude coordinate of the city for which the weather data is recorded. It is a numeric value that ranges from -180 to 180, with negative values representing the western hemisphere and positive values representing the eastern hemisphere.
+        data_type: numeric
+      - name: timezone
+        description: The timezone column represents the timezone of the city for which the weather data is recorded. It is a text field.
+        data_type: text
       - name: local_time
+        description: The local time of the city where the weather data was recorded. This is a timestamp without a time zone.
         data_type: timestamp without time zone
         data_tests:
           - not_null
+      - name: temperature_c
+        description: This column represents the temperature in Celsius for the given city at the specified local time. It is derived from the 'stg_weatherapi__weather' table.
+        data_type: bigint
+      - name: weather_code
+        description: A numeric code representing the current weather condition in the city. This code is unique for each type of weather condition.
+        data_type: bigint
+      - name: weather_desc
+        description: This column contains a textual description of the current weather conditions in the specified city. The data is sourced from the 'stg_weatherapi__weather' table and is updated daily. The description can include conditions such as 'Sunny', 'Cloudy', 'Rainy', etc.
+        data_type: text
+      - name: wind_speed_kph
+        description: This column represents the wind speed in kilometers per hour for the given city at the specified local time. It is derived from the 'stg_weatherapi__weather' source table.
+        data_type: bigint
+      - name: wind_degree
+        description: This column represents the degree of wind direction in the city on the latest day. The value is a whole number ranging from 0 to 360, where 0 degree indicates North, 90 indicates East, 180 indicates South, and 270 indicates West.
+        data_type: bigint
+      - name: wind_direction
+        description: This column represents the direction from which the wind is coming in the specified city. The value is represented in text format.
+        data_type: text
+      - name: pressure_mb
+        description: This column represents the atmospheric pressure in millibars at the time of the weather observation.
+        data_type: bigint
+      - name: precip_mm
+        description: This column represents the amount of precipitation in millimeters that occurred in the city on the latest day. It is derived from the 'stg_weatherapi__weather' source table.
+        data_type: bigint
+      - name: humidity_pct
+        description: This column represents the percentage of humidity in the air at the given city and time. The value is a whole number, with 100 representing 100% humidity.
+        data_type: bigint
+      - name: cloud_cover_pct
+        description: This column represents the percentage of the sky covered by clouds. It is a numeric value ranging from 0 to 100, where 0 indicates a clear sky and 100 indicates complete cloud cover.
+        data_type: bigint
+      - name: feels_like_c
+        description: This column represents the 'feels like' temperature in degrees Celsius. It is a measure of how hot or cold it really feels like outside. This measurement takes into account factors such as wind speed and humidity.
+        data_type: bigint
+      - name: uv_index
+        description: The UV Index is a measure of the intensity of ultraviolet (UV) radiation from the sun at a specific place on a particular day. It is an important piece of data that can help individuals understand the potential risk of overexposure to UV rays. The higher the UV Index value, the greater the potential for damage to the skin and eyes, and the less time it takes for harm to occur.
+        data_type: bigint
+      - name: visibility_km
+        description: This column represents the visibility in kilometers. It is a measure of the distance at which an object or light can be clearly discerned.
+        data_type: bigint
+      - name: is_day
+        description: A text field indicating whether the recorded weather data is for daytime or nighttime. 'Y' indicates daytime and 'N' indicates nighttime.
+        data_type: text
+      - name: rn
+        description: This column represents the row number assigned to each record within a partition defined by the city and the day of local time. The row number is assigned in descending order of local time, meaning the latest record for each city and day gets the row number 1.
+        data_type: bigint
+
 
