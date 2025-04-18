@@ -1,20 +1,16 @@
 {% docs stg_gsheets__franchise_actives_description %}
-A breakdown of active franchise metadata sourced from the `franchise_actives` sheet in Google Storage.
+A cleaned and structured transformation of franchise metadata from the `raw_google_sheets.franchise_actives` table.
 
-This model is structured with a `game`-level grain and built for reusability in downstream aggregations. While it supports rollups by various dimensions (date, team, coach, etc.), access to individual-level details is retained to enable flexible slicing.
+This model provides historical and current data for sports franchises and is optimized for downstream analysis across performance and status metrics.
 
-The data includes (but is not limited to):
-* Total games played
-* Home and away team scores
-* Point differentials
-* Home vs away win outcomes
+Included attributes cover (but are not limited to):
+* Franchise ID, name, and reference URL
+* Years of activity (start and end)
+* Games played, wins, losses, and win percentage
+* Titles and achievements (playoff appearances, division, conference, and league titles)
+* Boolean flag for current franchise activity status
 
-It also contains core franchise metadata such as:
-* Team Names
-* Head Coaches
-* General Managers
-* Day Info (Date, Weekday, Month)
-* Game Status (Regulation, Overtime)
+All fields are cleaned and cast into appropriate data types to support reporting and model joins.
 {% enddocs %}
 
 {% docs stg_gsheets__franchise_general_managers %}
