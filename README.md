@@ -1,6 +1,6 @@
 ## Our Data Pipeline Project
 
-This repository consists of a Data Pipeline Project that loads raw data using Sling and uses a Python script to load Weatherstack API data and uses dbt to transforms raw data sources loaded using Sling into clear, formatted models for Analytics.
+This repository consists of a Data Pipeline Project that loads raw data using Sling and uses a Python script to load Weatherstack API data and uses dbt to transforms raw data sources loaded using Sling and Python script into clear, formatted models for Analytics.
 
 ![Data Pipeline](images/Data_pipeline.jpg)
 
@@ -12,10 +12,10 @@ To learn more about the overall architecture design & strategy, check our centra
 ### Sources:
 Raw, unformatted data loaded directly from source systems using various data tools.
 
-- **`nba_data`** – The primary source of NBA statistics data captured from an API and loaded via Sling/Airbyte.
+- **`nba_data`** – The primary source of NBA statistics data captured from an API and loaded via Sling.
   - Schema: `analytics.raw_nba_data`
 
-- **`google_sheets`** – Internally maintained reference sheets related to the project, loaded via Sling/Airbyte.
+- **`google_sheets`** – Internally maintained reference sheets related to the project, loaded via Sling.
   - Schema: `analytics.raw_google_sheets`
 
 - **External API Data** – Additional datasets loaded via Python scripts as part of the CI and Production workflows.
