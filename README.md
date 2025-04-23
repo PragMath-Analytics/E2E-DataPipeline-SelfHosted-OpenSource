@@ -12,7 +12,7 @@ To learn more about the overall architecture design & strategy, check our centra
 ### Sources:
 Raw, unformatted data loaded directly from source systems using various data tools.
 
-- **`nba_data`** – The primary source of NBA statistics data captured from an API and loaded via Sling.
+- **`nba_data`** – The primary source of NBA statistics data captured from a hosted postgres server and loaded via Sling.
   - Schema: `analytics.raw_nba_data`
 
 - **`google_sheets`** – Internally maintained reference sheets related to the project, loaded via Sling.
