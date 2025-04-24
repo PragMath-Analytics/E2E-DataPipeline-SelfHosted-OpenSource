@@ -1,7 +1,7 @@
 [sqlfluff]
 dialect = postgres
 templater = dbt
-exclude_rules = AM01, AM02, AM06, ST01, ST02, ST03, ST04, ST05, RF01, RF02, RF03, RF04, RF05, RF06
+exclude_rules = AM06, RF05, RF04, LT10, ST06  # etc.
 runaway_limit = 10
 max_line_length = 80
 indent_unit = space
@@ -12,34 +12,18 @@ indent_unit = space
 profiles_dir = _project_docs/automation
 project_dir = .
 
-
-# --- Capitalization rules (minimal impact) ---
 [sqlfluff:rules:capitalisation.keywords]
-capitalisation_policy = lower
-
-[sqlfluff:rules:capitalisation.functions]
-capitalisation_policy = lower
-
-[sqlfluff:rules:capitalisation.literals]
 capitalisation_policy = lower
 
 [sqlfluff:rules:capitalisation.identifiers]
 extended_capitalisation_policy = lower
 
-# --- Indentation ---
-[sqlfluff:indentation]
-tab_space_size = 4
-indented_joins = true
-indented_ctes = true
+[sqlfluff:rules:capitalisation.functions]
+capitalisation_policy = lower
 
-# --- Comma placement and spacing ---
-[sqlfluff:layout:type:comma]
-spacing_before = touch
-line_position = trailing
-
-# --- Layout spacing and newline fixes ---
 [sqlfluff:rules:layout.spacing]
-# Automatically included for rules like LT01 (spacing), LT02 (indent), LT05 (line length)
+tab_space_size = 4
 
-[sqlfluff:rules:layout.newlines]
-max_line_breaks = 2
+[sqlfluff:indentation]
+indent_unit = space
+tab_space_size = 4
