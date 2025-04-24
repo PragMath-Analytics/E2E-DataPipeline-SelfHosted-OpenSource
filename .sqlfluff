@@ -12,18 +12,6 @@ indent_unit = space
 profiles_dir = _project_docs/automation
 project_dir = .
 
-[sqlfluff:rules]
-tab_space_size = 4
-
-[sqlfluff:indentation]
-# Allow implicit indent blocks if using jinja/dbt
-allow_implicit_indents = True
-
-# Formatting rules (safe)
-[sqlfluff:rules:layout]
-# No additional settings; defaults are safe
-
-# Capitalisation rules (set to your preference: upper, lower, consistent)
 [sqlfluff:rules:capitalisation.keywords]
 capitalisation_policy = lower
 
@@ -38,3 +26,7 @@ capitalisation_policy = lower
 
 [sqlfluff:rules:capitalisation.types]
 extended_capitalisation_policy = lower
+
+[sqlfluff:indentation]
+tab_space_size = 4
+allow_implicit_indents = True
