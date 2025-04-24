@@ -9,7 +9,7 @@ indent_unit = space
 # Feel free to change the following as needed:
 
 [sqlfluff:templater:dbt]
-profiles_dir = /home/student227/.dbt/profiles
+profiles_dir = _project_docs/automation
 project_dir = .
 
 [sqlfluff:indentation]
