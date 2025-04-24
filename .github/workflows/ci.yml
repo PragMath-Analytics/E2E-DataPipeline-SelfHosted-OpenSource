@@ -40,7 +40,7 @@ jobs:
         run: |
           pip install sqlfluff sqlfluff-templater-dbt
 
-      - name: Run SQLFluff Lint
+      - name: Run SQLFluff Fix
         run: sqlfluff fix models/
         continue-on-error: true
 
