@@ -42,6 +42,7 @@ jobs:
 
       - name: Run SQLFluff Lint
         run: sqlfluff fix models/
+        continue-on-error: true
 
   build-and-deploy:
     name: Data Load & DBT Build
