@@ -82,6 +82,14 @@ jobs:
       - name: Install dbt Packages
         run: dbt deps
 
+      - name: Install SQLFluff
+        run: |
+          pip install sqlfluff sqlfluff-templater-dbt
+
+      - name: Run SQLFluff Lint
+        run: |
+          sqlfluff lint models/
+
       - name: Deploy & Test Models (CI)
         run: > 
           dbt build
