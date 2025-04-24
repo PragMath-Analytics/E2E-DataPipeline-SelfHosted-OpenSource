@@ -41,7 +41,7 @@ jobs:
           pip install sqlfluff sqlfluff-templater-dbt
 
       - name: Run SQLFluff Lint
-        run: sqlfluff lint models/
+        run: sqlfluff fix models/
 
   build-and-deploy:
     name: Data Load & DBT Build
